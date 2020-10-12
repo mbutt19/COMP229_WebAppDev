@@ -1,0 +1,18 @@
+﻿@model RecipeViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <div class="container">
+        <h1 class="label-info" id="h1Format"><b>Edit Recipe</b></h1>
+        <form class="form-group-sm table-bordered bg-warning" asp-action="Edit" method="post">
+            @await Html.PartialAsync("FullRecipeInput")
+            <br />
+            <div class="text-center">
+                <br />
+                <button class="btn btn-primary formBtn" type="submit">Update</button>
+                <button class="btn btn-primary formBtn" asp-action="List">Back To List</button>
+            </div>
+        </form>
+    </div>
+

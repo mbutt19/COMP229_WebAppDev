@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Recipe>
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="container">
+    <div class="row" id="h1Format">
+        <h1 class="label-info col-sm-8" id="h1Format"><b>Your Recipe Book</b></h1>
+        <a asp-action="Create" class="btn btn-success col-sm-3 addBtn glyphicon-plus">Add New Recipe</a>
+    </div>
+    
+    <table class="table table-sm table-striped table-bordered text-left bg-warning table-responsive">
+        <tr>
+            <th>ID</th>
+            <th colspan="2">Recipe Name</th>
+            <th colspan="3">Action</th>
+        </tr>
+
+        @foreach (var r in Model)
+        {
+            <tr class="listTbl">
+                <td>@r.RecipeID</td>
+                <td colspan="2"><a asp-action="View" asp-route-RecipeID="@r.RecipeID" class="navbar-link">@r.Name</a></td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <a class="btn btn-default btn-warning center-block" asp-action="Edit" asp-route-RecipeID=@r.RecipeID>Edit</a>
+                        <input type="hidden" name="RecipeID" value="@r.RecipeID" />
+                        <button type="submit" class="btn btn-default btn-danger center-block" asp-action="Delete">Delete</button>
+                    </form>
+                    
+                </td>
+                <td><a class="btn btn-default btn-primary center-block" asp-action="ReviewRecipe">Review</a></td>
+            </tr>
+        }
+    </table>
+</div>
+

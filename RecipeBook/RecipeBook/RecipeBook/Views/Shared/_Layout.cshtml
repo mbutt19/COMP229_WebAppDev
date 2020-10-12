@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div class="row ">
+        <div class="col-lg-12 panel-heading text-center p-a-1">
+            <div class="">
+                <nav class="navbar navbar-inverse" id="navbar">
+                    <ul class="list-unstyled">
+                        <li class="col-sm-2"><a asp-controller="Recipe" asp-action="Index"><img class="img-circle" src="~/images/A1Logo.png" id="logo" /></a></li>
+                        <li class="col-sm-2"><h2><a asp-controller="Recipe" asp-action="Index">Home</a></h2></li>
+                        <li class="col-sm-3"><h2><a asp-controller="Recipe" asp-action="List">Your Recipe Book</a></h2></li>
+                        <li class="col-sm-2"><h2><a asp-controller="Recipe" asp-action="Create">Add A Recipe</a></h2></li>
+                        <li class="col-sm-2 pull-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <h2 class="btn btn-sm btn-info"><a class="btn btn-sm btn-info" asp-action="Logout" asp-controller="Account">LOG OUT</a></h2>
+                            }
+
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success text-center confirmed">@TempData["message"]</div>
+    }
+
+    <div class="panel-body panel-success text-center">
+        <div class="panel-body" id="content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

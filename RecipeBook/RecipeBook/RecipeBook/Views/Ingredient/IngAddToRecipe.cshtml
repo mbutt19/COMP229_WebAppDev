@@ -1,0 +1,19 @@
+﻿@model Ingredient
+@{
+    ViewData["Title"] = "IngAddToRecipe";
+}
+
+    <div class="container">
+        <h1 class="label-info" id="h1Format"><b>Add Ingredient To Recipe</b></h1>
+        <form class="form-group-sm table-bordered bg-warning" asp-action="IngAddToRecipe" method="post">
+            <input type="hidden" asp-for="IngredientID" />
+            <input type="hidden" asp-for="RecipeID" />
+            @await Html.PartialAsync("IngInput")
+            <br />
+            <div class="text-center ingFormBtn">
+                <button class="btn btn-primary formBtn" type="submit">Save</button>
+                <button class="btn btn-primary formBtn" asp-controller="Recipe" asp-action="List">Back To List</button>
+            </div>
+        </form>
+    </div>
+

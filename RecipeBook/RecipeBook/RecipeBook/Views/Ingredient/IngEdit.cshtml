@@ -1,0 +1,17 @@
+﻿@model Ingredient
+@{
+    ViewData["Title"] = "Ingredient List";
+}
+
+    <div class="container">
+        <h1 class="label-info" id="h1Format"><b>@ViewBag.InputType Ingredient</b></h1>
+        <form class="form-group-sm table-bordered bg-warning" asp-action="IngEdit" method="post">
+            <input type="hidden" asp-for="IngredientID" />
+            @await Html.PartialAsync("IngInput")
+            <br />
+            <div class="text-center ingFormBtn">
+                <button class="btn btn-primary formBtn" type="submit">Save</button>
+                <button class="btn btn-primary formBtn" asp-action="Index">Back To List</button>
+            </div>
+        </form>
+    </div>

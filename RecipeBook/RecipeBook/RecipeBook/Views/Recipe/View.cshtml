@@ -1,0 +1,64 @@
+﻿@model RecipeViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<div id="rOverview" class="container">
+    <div class="row label-info" id="h1Format">
+        <div class="col-sm-8 pull-sm-4"><h1 class="label-info" id="h1Format"><b>@Model.Recipe.Name</b></h1></div>
+        <div class="col-sm-1">
+            <a class="btn btn-default btn-warning center-block" asp-action="Edit" asp-route-RecipeID=@Model.Recipe.RecipeID>Edit Recipe</a>
+        </div>
+    </div>
+    <h4 class="label-info" id="h4Format"><b>@Model.Recipe.Description</b></h4>
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr id="tHead">
+                <th>Servings:</th>
+                <th>Prep Time:</th>
+                <th>Cook Time:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>@Model.Recipe.Servings</th>
+                <th>@Model.Recipe.PrepMinutes</th>
+                <th>@Model.Recipe.CookMinutes</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div id="rIngredients" class="mark">
+        <h2><b><u>INGREDIENTS</u></b></h2>
+        <ul class="list-unstyled">
+            @foreach(Ingredient i in Model.Ingredients)
+            {
+                <li>@i.Amount @i.Unit @i.Name</li>
+            }
+
+            <li><a  asp-action="IngAddToRecipe" asp-controller="Ingredient" asp-route-RecipeID="@Model.Recipe.RecipeID" 
+                   class="btn btn-success glyphicon-plus">Add New Ingredient</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div id="rDirections" class="mark">
+        <h2><b><u>DIRECTIONS</u></b></h2>
+        <ul class="list-unstyled">
+            @{
+                string[] dirList = Model.Recipe.Directions.Split(".");
+
+                foreach (var line in dirList)
+                {
+
+                    <li>@line</li>
+
+                }
+            }
+        </ul>
+    </div>
+</div>
+

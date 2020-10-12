@@ -1,0 +1,33 @@
+﻿@model IQueryable<Ingredient>
+@{
+    ViewData["Title"] = "IngList";
+}
+
+    <div class="container">
+        <div class="row" id="h1Format">
+            <h1 class="label-info col-sm-8" id="h1Format"><b>Your Ingredient List</b></h1>
+            <a asp-action="Create" class="btn btn-success col-sm-3 addBtn glyphicon-plus">Add New Ingredient</a>
+        </div>
+
+        <table class="table table-sm table-striped table-bordered text-left bg-warning table-responsive">
+            <tr>
+                <th colspan="2">Ingredient Name</th>
+                <th colspan="3">Action</th>
+            </tr>
+
+            @foreach (var i in Model)
+            {
+                <tr class="listTbl">
+                    <td colspan="2"><a class="navbar-link">@i.RecipeID @i.Amount @i.Unit @i.Name</a></td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <a class="btn btn-default btn-warning center-block" asp-action="IngEdit" asp-route-IngredientID=@i.IngredientID>Edit</a>
+                            <input type="hidden" name="IngredientID" value="@i.IngredientID" />
+                            <button type="submit" class="btn btn-default btn-danger center-block" asp-action="Delete">Delete</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
